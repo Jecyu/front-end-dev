@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>mockjs</title>
+</head>
+<body>
+    <div>
+        <button id="get">get请求</button>
+        <button id="post">post请求</button>
+    </div>
+</body>
+<!-- 浏览器 -->
+<script type="text/javascript" src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://mockjs.com/dist/mock.js"></script>
+<script type="text/javascript">
+    // 调用mock方法模拟数据
+    // 响应模版
+    Mock.mock(
+        'http://Jecyu.com', {
+            "userName" : "@name",  // 模拟名称
+            "age|1-100": 100,
+            "color"    : "@color",
+            "date"     : "@date('yyyy-MM-dd')", // 模拟时间
+            "url"      : "@url()",
+            "content"  : "@cparagraph" // 模拟文本
+        }
+    );
+
+    
+    // ajax请求
+    $('#get').click(function() {
+        $.ajax({
+            url: "http://Jecyu.com",
+            type: "GET",
+            dataType: "json",
+            data: {
+                
+            },
+            success: function(res){
+                // 请求成功处理
+                console.log(res);
+            },
+            error: function(err) {
+                // 请求失败处理
+            }
+
+        })
+    });
+
+</script>
+</html>
